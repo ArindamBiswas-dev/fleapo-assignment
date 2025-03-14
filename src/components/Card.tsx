@@ -1,16 +1,40 @@
 import {useTheme} from '@react-navigation/native';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import Rating from './Rating';
 
-function Card(): React.JSX.Element {
+type CardPropType = {
+  title: string;
+  imageUrl: string;
+  rating: number;
+};
+
+function Card({title, imageUrl, rating}: CardPropType): React.JSX.Element {
   const {colors} = useTheme();
 
   return (
     <View style={styles.card}>
-      <Image
-        source={require('../assets/images/cobe.png')}
-        style={styles.cardImage}
-      />
-      <Text style={{color: colors.text}}>Cobi's</Text>
+      <ImageBackground
+        source={imageUrl as ImageSourcePropType}
+        style={styles.cardImage}>
+        <Rating rating={rating} />
+      </ImageBackground>
+      <Text
+        numberOfLines={1}
+        ellipsizeMode="tail"
+        style={{
+          color: colors.text,
+          fontWeight: '600',
+          fontFamily: 'AvenirNextLTPro-Regular',
+        }}>
+        {title}
+      </Text>
     </View>
   );
 }
@@ -23,9 +47,14 @@ const styles = StyleSheet.create({
     // height: 80,
     borderRadius: 12,
     gap: 5,
+    position: 'relative',
   },
   cardImage: {
     width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
     height: 80,
     borderRadius: 12,
   },

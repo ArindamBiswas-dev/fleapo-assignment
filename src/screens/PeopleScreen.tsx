@@ -28,25 +28,46 @@ function FriendsList(): React.JSX.Element {
         contentContainerStyle={styles.listContainer}
         horizontal={false}
         showsVerticalScrollIndicator={false}>
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
+        {PEOPLE_FRIENDS.map((value, index) => (
+          <ListItem
+            key={value.username}
+            profile_pic={value.pic}
+            title={value.username}
+            subtitles={[value.location]}
+            isPreamimum={value.premimun}
+            isFriend={true}
+          />
+        ))}
       </ScrollView>
       <SearchInput />
     </View>
   );
 }
 function VerifiedList(): React.JSX.Element {
-  return <Text>VerifiedList</Text>;
+  const {colors} = useTheme();
+  return (
+    <View style={styles.otherTabContainer}>
+      <Text style={{color: colors.text, textAlign: 'center'}}>
+        Verified List
+      </Text>
+    </View>
+  );
 }
 function EveryoneList(): React.JSX.Element {
-  return <Text>EveryoneList</Text>;
+  const {colors} = useTheme();
+  return (
+    <View style={styles.otherTabContainer}>
+      <Text style={{color: colors.text, textAlign: 'center'}}>
+        Everyone List
+      </Text>
+    </View>
+  );
 }
 
 import type {SceneRendererProps, NavigationState} from 'react-native-tab-view';
 import ListItem from '../components/ListItem';
 import SearchInput from '../components/SearchInput';
+import {PEOPLE_FRIENDS} from '../utils/data';
 
 const renderTabBar = (
   props: SceneRendererProps & {
@@ -204,6 +225,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 20,
   },
+  otherTabContainer: {flex: 1, justifyContent: 'center', alignItems: 'center'},
 });
 
 export default PeopleScreen;

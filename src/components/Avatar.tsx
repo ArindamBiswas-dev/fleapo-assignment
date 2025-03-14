@@ -1,16 +1,23 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
 
 type AvatarProps = {
   imageUrl: string;
   alt?: string;
+  avatarShape?: 'rounded' | 'square';
 };
 
-function Avatar({imageUrl}: AvatarProps): React.JSX.Element {
+function Avatar({
+  imageUrl,
+  avatarShape = 'rounded',
+}: AvatarProps): React.JSX.Element {
   console.log(imageUrl);
   return (
     <Image
-      source={require('../assets/images/avatar1.png')}
-      style={styles.avatar}
+      source={imageUrl as ImageSourcePropType}
+      style={[
+        styles.avatar,
+        {borderRadius: avatarShape === 'rounded' ? 50 : 8},
+      ]}
     />
   );
 }

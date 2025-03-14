@@ -1,5 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View, Platform, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {
   createStaticNavigation,
   useLinkBuilder,
@@ -13,13 +19,13 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import theme from '../utils/theme';
-import HitListIcon from '../assets/icons/hitlist.svg';
-import ListIcon from '../assets/icons/list.svg';
+import HList2Icon from '../assets/icons/hitlist2.svg';
 import MapIcon from '../assets/icons/map.svg';
-import ProfileIcon from '../assets/icons/profile.svg';
 import MapScreen from '../screens/MapScreen';
 import ListScreen from '../screens/ListScreen';
 import HitListScreen from '../screens/HitListScreen';
+import Profile3Icon from '../assets/icons/profile3.svg';
+import ListIcon from '../assets/icons/list.svg';
 
 function MyTabBar({state, descriptors, navigation}) {
   const {colors} = useTheme();
@@ -77,7 +83,7 @@ function MyTabBar({state, descriptors, navigation}) {
             })}
             <Text
               style={[
-                {color: isFocused ? colors.primary : colors.muted},
+                {color: isFocused ? colors.text : colors.muted},
                 styles.tabBarLabel,
               ]}>
               {label}
@@ -102,11 +108,27 @@ const MyTabs = createBottomTabNavigator({
     headerShown: false,
     tabBarIcon: ({focused, color, size}) => {
       if (route.name === 'Profile') {
-        return <MapIcon fill={color} color={color} />;
+        return (
+          <Image
+            source={require('../assets/images/profile_avatar.png')}
+            style={styles.profileImage}
+          />
+        );
       } else if (route.name === 'People') {
-        return <ProfileIcon fill={color} />;
+        return <Profile3Icon color={color} />;
+      } else if (route.name === 'Map') {
+        return <MapIcon color={color} />;
+      } else if (route.name === 'HitList') {
+        return <HList2Icon fill={color} />;
+      } else if (route.name === 'List') {
+        return <ListIcon color={color} />;
+      } else {
+        return <Profile3Icon color={color} />;
       }
-      return <ProfileIcon fill={color} />;
+    },
+    tabBarActiveTintColor: 'red',
+    tabBarLabelStyle: {
+      fontFamily: 'AvenirNextLTPro-Regular',
     },
   }),
 });
@@ -141,4 +163,5 @@ const styles = StyleSheet.create({
     fontSize: 8,
     letterSpacing: 0.8,
   },
+  profileImage: {height: 25, width: 25, borderWidth: 2, borderRadius: 16},
 });

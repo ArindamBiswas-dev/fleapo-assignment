@@ -34,10 +34,7 @@ function App(): React.JSX.Element {
 
   return (
     <>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
+      <StatusBar />
       <View style={{flex: 1, backgroundColor: '#1C1C1E'}}>
         <AppNavigator />
       </View>

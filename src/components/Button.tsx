@@ -1,12 +1,13 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {DimensionValue, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 type ButtonProps = {
-  height: number;
-  width: number;
+  height: number | string;
+  width: number | string;
   label: string;
-  icon?: React.JSX.Element;
+  leftIcon?: React.JSX.Element;
+  rightIcon?: React.JSX.Element;
   onPress: () => void;
 };
 
@@ -14,7 +15,8 @@ function Button({
   width,
   height,
   label,
-  icon,
+  leftIcon,
+  rightIcon,
   onPress,
 }: ButtonProps): React.JSX.Element {
   const {colors} = useTheme();
@@ -22,10 +24,16 @@ function Button({
     <TouchableOpacity
       style={[
         styles.button,
-        {width: width, height: height, backgroundColor: colors.backgroundLight},
+        {
+          width: width as DimensionValue,
+          height: height as DimensionValue,
+          backgroundColor: colors.backgroundLight,
+        },
       ]}
       onPress={onPress}>
+      {leftIcon ? leftIcon : <></>}
       <Text style={{color: colors.text}}>{label}</Text>
+      {rightIcon ? rightIcon : <></>}
     </TouchableOpacity>
   );
 }
@@ -34,8 +42,10 @@ export default Button;
 
 const styles = StyleSheet.create({
   button: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    gap: 8,
     borderRadius: 16,
     padding: 5,
     borderRightWidth: 2,
