@@ -1,6 +1,5 @@
 import {useTheme} from '@react-navigation/native';
 import {
-  Image,
   ImageBackground,
   ImageSourcePropType,
   StyleSheet,

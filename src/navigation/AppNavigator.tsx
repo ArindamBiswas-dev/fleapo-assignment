@@ -1,17 +1,14 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
-  View,
-  Platform,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {
   createStaticNavigation,
   useLinkBuilder,
   useTheme,
 } from '@react-navigation/native';
-import {Text, PlatformPressable} from '@react-navigation/elements';
+import {Text} from '@react-navigation/elements';
 import PeopleScreen from '../screens/PeopleScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import {
@@ -27,7 +24,7 @@ import HitListScreen from '../screens/HitListScreen';
 import Profile3Icon from '../assets/icons/profile3.svg';
 import ListIcon from '../assets/icons/list.svg';
 
-function MyTabBar({state, descriptors, navigation}) {
+function MyTabBar({state, descriptors, navigation}: BottomTabBarProps) {
   const {colors} = useTheme();
   const {buildHref} = useLinkBuilder();
   const insets = useSafeAreaInsets();

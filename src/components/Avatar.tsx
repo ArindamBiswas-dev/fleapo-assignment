@@ -1,4 +1,4 @@
-import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
+import {Image, ImageSourcePropType, StyleSheet} from 'react-native';
 
 type AvatarProps = {
   imageUrl: string;
