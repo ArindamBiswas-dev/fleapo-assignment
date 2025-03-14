@@ -4,6 +4,8 @@ import {useState} from 'react';
 import {
   Animated,
   Dimensions,
+  KeyboardAvoidingView,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,

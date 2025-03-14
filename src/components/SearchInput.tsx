@@ -1,13 +1,9 @@
 import {useTheme} from '@react-navigation/native';
 import {StyleSheet, TextInput, View} from 'react-native';
+import SearchIcon from '../assets/icons/Search.svg';
 
 function SearchInput(): React.JSX.Element {
   const {colors} = useTheme();
-  //   const [searchTerm, setSearchTerm] = useState<string>('');
-
-  //   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-  //     setSearchTerm(event.target.value);
-  //   };
 
   return (
     <View
@@ -15,7 +11,9 @@ function SearchInput(): React.JSX.Element {
         styles.inputContainer,
         {backgroundColor: colors.backgroundLight},
       ]}>
-      {/* <View style={styles.labelContainer}></View> */}
+      <View style={styles.labelContainer}>
+        <SearchIcon />
+      </View>
       <TextInput
         style={[styles.input, {color: colors.muted}]}
         textContentType="name"
@@ -47,7 +45,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    width: 100,
+    paddingHorizontal: 10,
   },
   label: {},
   input: {
